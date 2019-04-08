@@ -23,7 +23,7 @@ CODE EXPLANATION
 
 VIDEOS USE COMMAND-LINE 
 customer.js
-https://drive.google.com/file/d/1so1fhPxsH6GT8SWCnVf3b_QkVxeTRVDz/view?usp=sharing
+https://drive.google.com/file/d/1tXnHd5KL7XLFBN1TskEomxxeY69O5zGe/view?usp=sharing
 
 
 manager.js
@@ -31,7 +31,8 @@ https://drive.google.com/file/d/1jtHBSteFUD0AsI5i3J8kJV1pm23C9b_R/view?usp=shari
 
 
 supervisor.js
-https://drive.google.com/file/d/1r_8rt9IKWzvp9On7sV3TAMvojgH2OhFQ/view?usp=sharing
+https://drive.google.com/file/d/1PrXqsR_sCNnNbGXF2RBjLwp1Ir2QvjFj/view?usp=sharing
+
 
 
 

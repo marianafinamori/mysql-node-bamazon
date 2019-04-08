@@ -36,79 +36,39 @@ function start() {
 
 function viewDepartments() {
     var salesArray = [];
-    var overhead = [];
     var profitArray = [];
-    var query = 'SELECT product_sales FROM products WHERE department_name = "A"'
+    var profit;
+    var query = "SELECT SUM (product_sales) AS sales_by_dep, department_name FROM products GROUP BY department_name"
     connection.query(query, function(err, res) {
-        var sales = 0;
-      for (var i = 0; i < res.length; i++) {
-          sales = sales + res[i].product_sales;
-      }
-      salesArray.push(sales);
-    //   console.log(salesArray);
-    });
-    var query = 'SELECT product_sales FROM products WHERE department_name = "B"'
-    connection.query(query, function(err, res) {
-        var sales = 0;
-      for (var i = 0; i < res.length; i++) {
-          sales = sales + res[i].product_sales;
-      }
-      salesArray.push(sales);
-    //   console.log(salesArray);
-    });
-    var query = 'SELECT product_sales FROM products WHERE department_name = "C"'
-    connection.query(query, function(err, res) {
-        var sales = 0;
-      for (var i = 0; i < res.length; i++) {
-          sales = sales + res[i].product_sales;
-      }
-      salesArray.push(sales);
-    //   console.log(salesArray);
-    });
-    var query = 'SELECT product_sales FROM products WHERE department_name = "D"'
-    connection.query(query, function(err, res) {
-        var sales = 0;
-      for (var i = 0; i < res.length; i++) {
-          sales = sales + res[i].product_sales;
-      }
-      salesArray.push(sales);
-    //   console.log(salesArray);
-    });
-    var query = 'SELECT product_sales FROM products WHERE department_name = "E"'
-    connection.query(query, function(err, res) {
-        var sales = 0;
-      for (var i = 0; i < res.length; i++) {
-          sales = sales + res[i].product_sales;
-      }
-      salesArray.push(sales);
-    //   console.log(salesArray);
-      var query = "SELECT * FROM departments"
-      connection.query(query, function(err, res) {
-          for (var i= 0; i < res.length; i++) {
-              overhead.push(res[i].over_head_costs);
-              var profit = salesArray[i] - overhead[i]
-              profitArray.push(profit);
-          }
-        //   console.log(overhead);
-        //   console.log(profitArray);
-          var tableDepartments = new Table ({
-            head: ["Department id", "Department Name", "Over Head Costs", "Product Sales", "Total Profit"],
-            colWidths: [20,35,20,20,20]
-        });
-            for (var i = 0; i < res.length; i++) {
-                tableDepartments.push([res[i].department_id, res[i].department_name, res[i].over_head_costs, salesArray[i], profitArray[i]])
+        // console.log(res);
+        for (var i = 0; i < res.length; i++) {
+            salesArray.push(res[i].sales_by_dep);
+        }
+        // console.log(salesArray);
+        })
+
+        var query = "SELECT * FROM departments";
+        connection.query(query, function(err, results) {
+            for (var i = 0; i < results.length; i++) {
+                profitArray.push(salesArray[i] - results[i].over_head_costs);
+            }
+            // console.log(profitArray);
+
+            var tableDepartments = new Table({
+                head: ["Department Id", "Department Name", "Over Head Costs", "Product Sales", "Total Profit"],
+                colWidths: [17, 22, 17, 17, 17]
+            });
+            for (var i = 0; i < results.length; i++) {
+                tableDepartments.push([results[i].department_id, results[i]. department_name, results[i].over_head_costs, salesArray[i], profitArray[i]]);
             }
             console.log(tableDepartments.toString());
             anythingElse();
-      })
-    });
-   
-  }
+        })
+    }
 
 function addNew() {
     inquirer
         .prompt([
-            
             {
                 name: "department",
                 type: "input",
@@ -207,7 +167,7 @@ function init() {
         if (err) throw err;
         var tableSale = new Table ({
             head: ["Item id", "Product", "Department", "Price", "Stock Quantity"],
-            colWidths: [20,35,20,20,20]
+            colWidths: [17,28,17,17,17]
         });
             for (var i = 0; i < results.length; i++) {
                 tableSale.push([results[i].item_id, results[i].product_name, results[i].department_name,

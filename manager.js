@@ -43,7 +43,7 @@ function viewProducts() {
         if (err) throw err;
         var tableSale = new Table ({
             head: ["Item id", "Product", "Department", "Price", "Stock Quantity"],
-            colWidths: [20,35,20,20,20]
+            colWidths: [17,28,17,17,17]
         });
             for (var i = 0; i < results.length; i++) {
                 tableSale.push([results[i].item_id, results[i].product_name, results[i].department_name,
@@ -61,7 +61,7 @@ function lowInventory() {
         if (err) throw err;
         var tableLow = new Table ({
             head: ["Item id", "Product", "Department", "Price", "Stock Quantity"],
-            colWidths: [20,35,20,20,20]
+            colWidths: [17,28,17,17,17]
         });
             for (var i = 0; i < results.length; i++) {
                 tableLow.push([results[i].item_id, results[i].product_name, results[i].department_name,
@@ -80,7 +80,7 @@ function addQuantity() {
         if (err) throw err;
         var tableSale = new Table ({
             head: ["Item id", "Product", "Department", "Price", "Stock Quantity"],
-            colWidths: [20,35,20,20,20]
+            colWidths: [17,28,17,17,17]
         });
             for (var i = 0; i < results.length; i++) {
                 tableSale.push([results[i].item_id, results[i].product_name, results[i].department_name,

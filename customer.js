@@ -27,7 +27,7 @@ function init() {
         if (err) throw err;
         var tableSale = new Table ({
             head: ["Item id", "Product", "Department", "Price", "Stock Quantity"],
-            colWidths: [20,35,20,20,20]
+            colWidths: [17,28,17,17,17]
         });
             for (var i = 0; i < results.length; i++) {
                 tableSale.push([results[i].item_id, results[i].product_name, results[i].department_name,
@@ -96,7 +96,7 @@ function choose() {
                     // console.log("go ahead")
                     buy()
                 } else {
-                    console.log("There are only " + chosenProduct.stock_quantity + " " + chosenProduct.product_name.toUpperCase() + " in stock.")
+                    console.log("Only " + chosenProduct.stock_quantity + " " + chosenProduct.product_name.toUpperCase() + " available in stock.")
                     buyMore();
                 }
             })
@@ -104,8 +104,6 @@ function choose() {
 }
 
 function buy() {
-    // connection.query("SELECT item_id, price, stock_quantity FROM products WHERE product_name=" + chosenProduct);
-    // console.log(chosenProduct);
     var currentStock;
     currentStock = chosenProduct.stock_quantity - quantitySelected;
     // console.log(currentStock);
